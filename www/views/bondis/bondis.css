@@ -1,3 +1,9 @@
 .bondis .no-margin {
   margin: 0px !important;
 }
+
+.bondis .list ion-item {
+  border-top-width: 3px; 
+  border-bottom-width: 3px;
+  border-color: #886aea;
+}
