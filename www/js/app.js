@@ -5,16 +5,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('bondis', {
     url: '/bondis',
-    templateUrl: 'templates/bondis.html'
+    templateUrl: 'views/bondis/bondis.html'
   })
   $stateProvider.state('detail', {
     url: '/detail/:bondiId',
-    templateUrl: 'templates/bondis-detail.html',
+    templateUrl: 'views/bondis-detail/bondis-detail.html',
     params: { bondi: null }
   })
   $stateProvider.state('info', {
     url: '/info',
-    templateUrl: 'templates/info.html'
+    templateUrl: 'views/info/info.html'
   })
 });
 
