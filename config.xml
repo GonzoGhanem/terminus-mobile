@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.gonzoft.terminus" version="1.0.1">
-  <name>terminus</name>
+  <name>Cuando sale el bondi?</name>
   <description>
         A small application to show Rosario's (Argentina) bus station time of departures, based on Ionic framework for mobile hybrid applications.
     </description>
