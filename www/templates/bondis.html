@@ -1,0 +1,44 @@
+<ion-pane ng-controller="BondisCtrl">
+  <ion-header-bar class="bar-dark">
+    <button class="button button-clear" ng-click="showHelp()">Info</button>
+    <h1 class="title">Cuándo sale el bondi?</h1>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Sale desde
+        </div>
+        <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('from','to')" ng-model="data.from"></select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Llega a
+        </div>
+        <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('to','from')" ng-model="data.to"></select>
+      </label>
+      <ion-toggle ng-model="data.upcoming" toggle-class="toggle-royal">Próximas salidas</ion-toggle>
+      <button class="button button-block button-royal no-margin" ng-click="searchBondis()">
+        Buscar bondis
+      </button>
+      <label class="item item-input">
+        <input type="text" placeholder="Filtrar por empresa" ng-model="data.filter">
+      </label>
+      <ion-item 
+        ng-repeat="bondi in bondis | filter:data.filter" 
+        class="item-text-wrap"
+        style="border-top-width: 3px; border-bottom-width: 3px;"
+        ng-click="showDetail(bondi)">
+        <span class="item-note" ng-show="bondi.today">
+          Sale hoy
+        </span>
+        <h2>{{bondi.name}}</h2>
+        <br>
+        <p>Sale: <strong>{{bondi.departure}}</strong></p>
+        <p>Llega: <strong>{{bondi.arrival}}</strong></p>
+        <br>
+        <p>Viaja los días: <strong>{{bondi.days_to_show.join(", ")}}</strong></p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-pane>

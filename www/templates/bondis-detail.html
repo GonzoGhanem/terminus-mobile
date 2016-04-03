@@ -1,0 +1,18 @@
+<ion-pane ng-controller="BondisDetailCtrl">
+  <ion-header-bar class="bar-dark">
+    <button class="button button-clear" ng-click="showBondis()">Bondis</button>
+    <h1 class="title">Detalle</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list card">
+      <div class="item">
+        <h2>Empresa {{bondi.name}}</h2>
+      </div>
+      <div class="item item-body">
+        <p>Sale: <strong>{{bondi.departure}}</strong></p>
+        <p>Llega: <strong>{{bondi.arrival}}</strong></p>
+        <p>Viaja los días: <strong>{{bondi.days_to_show.join(", ")}}</strong></p>
+      </div>
+    </div>
+  </ion-content>
+</ion-pane>

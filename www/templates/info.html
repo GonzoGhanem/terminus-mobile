@@ -1,0 +1,48 @@
+<ion-pane ng-controller="InfoCtrl">
+  <ion-header-bar class="bar-assertive">
+    <button class="button button-clear" ng-click="showBondis()">Bondis</button>
+    <h1 class="title">Información</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="img/icon.png">
+        <h2>Cuándo sale el bondi?</h2>
+        <div class="text-right">
+          <p>un proyecto de Gonzoft</p>
+          <p>- www.gonzoft.com.ar-</p>
+        </div>
+      </div>
+      <div class="item item-body">
+        <div class="text-center">
+          <h3>
+            Para qué sirve esta app?
+          </h3>
+        </div>
+        <p class="lead">
+          Esta es una aplicación simple que permite saber de manera rápida cuáles son
+          las próximas salidas desde y hacia Rosario en colectivo. Nuestra intención es
+          facilitar el acceso en dispositivos móviles.
+          La información mostrada es obtenida directamente desde la pagina web de la 
+          Terminal de Ómnibus de la ciudad de Rosario. Cada 24hs actualizamos esta 
+          información.
+        </p>
+        <img class="full-image" src="img/gonzoft.jpg">
+        <p>
+          Si bien nuestro equipo no se responsabiliza por errores en la información, 
+          estamos abiertos a nuevas sugerencias y nuestro mayor deseo es de hacer
+          algo útil para el usuario.
+        </p>
+        <p>
+          <span class="subdued">Escribinos a <a>cuandosale@gonzoft.com.ar</a></span>
+        </p>
+      </div>
+      <div class="text-center">
+        <a class="item assertive" ng-click="showBondis()">
+          <i class="icon ion-android-bus"></i>
+          Buen viaje!!
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-pane>
