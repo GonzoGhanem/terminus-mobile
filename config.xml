@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.gonzoft.terminus" version="1.0.1">
+<widget id="com.gonzoft.terminus" version="1.2.1">
   <name>Cuando sale el bondi?</name>
   <description>
-        A small application to show Rosario's (Argentina) bus station time of departures, based on Ionic framework for mobile hybrid applications.
+        A small application to show Rosario&apos;s (Argentina) bus station time of departures, based on Ionic framework for mobile hybrid applications.
     </description>
   <author email="gonzo@gonzoft.com.ar" href="http://gonzoft.com.ar/">
       Gonzo Ghanem
@@ -15,7 +15,7 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="SplashScreenDelay" value="6000"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

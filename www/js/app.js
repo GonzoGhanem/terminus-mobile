@@ -16,6 +16,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/info',
     templateUrl: 'views/info/info.html'
   })
+  $stateProvider.state('settings', {
+    url: '/settings',
+    templateUrl: 'views/settings/settings.html'
+  })
 });
 
 app.run(function($ionicPlatform) {

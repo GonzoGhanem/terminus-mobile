@@ -30,4 +30,15 @@ angular.module('terminus.services', [])
       })
     }
   };
+})
+.factory('Settings', function() {
+  var key = 'terminus-user-settings';
+  return {
+    get: function() {
+      return JSON.parse(window.localStorage[key] || '{"to": 944, "from": 2000}')
+    },
+    save: function(settings) {
+      window.localStorage[key] = JSON.stringify(settings);
+    }
+  };
 });

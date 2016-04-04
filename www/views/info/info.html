@@ -1,7 +1,7 @@
 <ion-pane ng-controller="InfoCtrl">
   <ion-header-bar class="bar-assertive">
-    <button class="button button-clear" ng-click="showBondis()">Bondis</button>
     <h1 class="title">Información</h1>
+    <a class="button button-clear" nav-direction="forward" href="#/bondis">Bondis</a>
   </ion-header-bar>
   <ion-content>
     <div class="list card">
@@ -38,7 +38,7 @@
         </p>
       </div>
       <div class="text-center">
-        <a class="item assertive" ng-click="showBondis()">
+        <a class="item assertive" nav-direction="forward" href="#/bondis">
           <i class="icon ion-android-bus"></i>
           Buen viaje!!
         </a>
