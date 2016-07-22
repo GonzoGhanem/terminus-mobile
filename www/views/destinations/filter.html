@@ -1,10 +1,14 @@
 <label class="item item-input">
-  <input type="text" placeholder="Filtrar por destino" ng-model="data.filter_destination">
+  <input type="text" id="filter_destination" placeholder="Filtrar por destino" ng-model="data.filter_destination">
 </label>
-<a class="item" style="height: 100px;">
-  <ul>
-    <li ng-repeat="destination in destinations |filter:{name: data.filter_destination}" ng-click="setDefaults('from','to')">
+<div class="list" >
+<!--   <div class="item" ng-click="start = start - 5" ng-show="start>0">
+    <strong>Anterior</strong>
+  </div> -->
+  <div class="item" ng-repeat="destination in data.destinations |filter:{name: data.filter_destination}|limitTo : 5" ng-click="setDefaults(destination.code, destination.name)" ng-hide="data.filter_destination == ''">
       {{destination.name}}
-    </li>
-  </ul>
-</a>
+  </div>
+  <!-- <div class="item" ng-click="start = start + 5" ng-show="start < data.destinations.length">
+    <strong>Siguiente</strong>
+  </div> -->
+</div>

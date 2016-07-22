@@ -1,0 +1,11 @@
+<a class="item item-icon-right" ng-click="showHideSearches('from', 'to')">
+  Sale desde: <strong>{{data.from_name}}</strong>
+  <i class="icon ion-chevron-down"></i>
+</a>
+<destinations-filter type="from" ng-show="data.show_from"></destinations-filter>
+<a class="item item-icon-right" ng-click="showHideSearches('to', 'from')">
+  Llega a: <strong>{{data.to_name}}</strong>
+  <i class="icon ion-chevron-down"></i>
+</a>
+<destinations-filter type="to" ng-show="data.show_to"></destinations-filter>
+<ion-toggle ng-model="data.upcoming" toggle-class="toggle-royal">Sólo próximas 3 salidas</ion-toggle>

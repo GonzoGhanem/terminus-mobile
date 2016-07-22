@@ -6,39 +6,17 @@
   </ion-header-bar>
   <ion-content>
     <ion-list>
-      <a class="item item-icon-right" ng-click="showHide('from')">
+      <!-- <a class="item item-icon-right" ng-click="showHideSearches('from', 'to')">
         Sale desde: <strong>{{data.from_name}}</strong>
         <i class="icon ion-chevron-down"></i>
       </a>
-      <destinations-filter></destinations-filter>
-      <!-- <label class="item item-input">
-        <input type="text" placeholder="Filtrar por destino" ng-model="data.filter_destination">
-      </label>
-      <a class="item" style="height: 100px;">
-        <ul>
-          <li ng-repeat="destination in destinations |filter:{name: data.filter_destination}" ng-click="setDefaults('from','to')">
-            {{destination.name}}
-          </li>
-        </ul>
-      </a> -->
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Sale desde: <strong>Venado Tuerto</strong>
-        </div>
-
-        <!-- <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('from','to')" ng-model="data.from"></select> -->
-        <ul>
-          <li ng-repeat="destination in destinations" ng-click="setDefaults('from','to')">
-            {{destination.name}}
-          </li>
-        </ul>
-      </label>
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Llega a
-        </div>
-        <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('to','from')" ng-model="data.to"></select>
-      </label>
+      <destinations-filter type="from" ng-show="data.show_from"></destinations-filter>
+      <a class="item item-icon-right" ng-click="showHideSearches('to', 'from')">
+        Llega a: <strong>{{data.to_name}}</strong>
+        <i class="icon ion-chevron-down"></i>
+      </a>
+      <destinations-filter type="to" ng-show="data.show_to"></destinations-filter> -->
+      <select-bondi></select-bondi>
       <a class="item item-icon-right" ng-click="switchDestinations()">
         Invertir selección actual
         <i class="icon ion-arrow-swap"></i>
@@ -127,19 +105,18 @@
           </div>
         </div>
         <div class="card">
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Sale desde
-            </div>
-            <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('from','to')" ng-model="data.from"></select>
-          </label>
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Llega a
-            </div>
-            <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('to','from')" ng-model="data.to"></select>
-          </label>
-          <ion-toggle ng-model="data.upcoming" toggle-class="toggle-royal">Sólo próximas 3 salidas</ion-toggle>
+          <select-bondi></select-bondi>
+          <!-- <a class="item item-icon-right" ng-click="showHideSearches('from', 'to')">
+            Sale desde: <strong>{{data.from_name}}</strong>
+            <i class="icon ion-chevron-down"></i>
+          </a>
+          <destinations-filter type="from" ng-show="data.show_from"></destinations-filter>
+          <a class="item item-icon-right" ng-click="showHideSearches('to', 'from')">
+            Llega a: <strong>{{data.to_name}}</strong>
+            <i class="icon ion-chevron-down"></i>
+          </a>
+          <destinations-filter type="to" ng-show="data.show_to"></destinations-filter>
+          <ion-toggle ng-model="data.upcoming" toggle-class="toggle-royal">Sólo próximas 3 salidas</ion-toggle> -->
         </div>
         <button class="button button-block button-royal" ng-click="saveFirstTime()">
           Guardar y buscar colectivos

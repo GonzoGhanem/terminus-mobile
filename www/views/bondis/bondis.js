@@ -53,7 +53,9 @@ angular.module('terminus.controllers.bondis', [])
       upcoming: true,
       destinations: [],
       from_name: '',
-      to_name: ''
+      to_name: '',
+      show_from: false,
+      show_to: false
     }
     $scope.destination_types = [
       {id: 'from', name: "desde"},
@@ -80,7 +82,9 @@ angular.module('terminus.controllers.bondis', [])
         upcoming: $scope.user_settings.upcoming,
         destinations: data,
         from_name: '',
-        to_name: ''
+        to_name: '',
+        show_from: false,
+        show_to: false
       }
       data.every(function(x){
         if($scope.data.from_name != '' && $scope.data.to_name != '') {
@@ -94,12 +98,6 @@ angular.module('terminus.controllers.bondis', [])
         return true;
       })
     });
-  }
-
-  $scope.setDefaults = function(check, modify){
-    if($scope.data[check] != 2000){
-      $scope.data[modify] = 2000
-    }
   }
 
   $scope.searchBondis = function(){
@@ -125,10 +123,14 @@ angular.module('terminus.controllers.bondis', [])
   $scope.switchDestinations = function(){
     var original = {
       origin: $scope.data.from,
-      destiny: $scope.data.to
+      destiny: $scope.data.to,
+      origin_name: $scope.data.from_name,
+      destiny_name: $scope.data.to_name,
     }
     $scope.data.to = original.origin
     $scope.data.from = original.destiny
+    $scope.data.from_name = original.destiny_name
+    $scope.data.to_name = original.origin_name
     $scope.searchBondis()
   }
 
@@ -185,6 +187,12 @@ angular.module('terminus.controllers.bondis', [])
   $scope.$on('$destroy', function() {
     $scope.contactModal.remove();
   });
+
+  // $scope.showHideSearches = function(show, hide) {
+  //   $scope.data['show_'+show] = !$scope.data['show_'+show]
+  //   $scope.data['show_'+hide] = false
+  //   $scope.data.filter_destination = ''
+  // }
 
   
 }])
