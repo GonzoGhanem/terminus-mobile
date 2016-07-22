@@ -1,16 +1,29 @@
-var app = angular.module('terminus', ['ionic', 'terminus.controllers', 'terminus.services']);
+var app = angular.module('terminus', ['ionic', 'terminus.controllers', 'terminus.services', 'terminus.directives']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/bondis')
 
   $stateProvider.state('bondis', {
     url: '/bondis',
-    templateUrl: 'views/bondis/bondis.html'
+    templateUrl: 'views/bondis/bondis.html',
+    controller: 'BondisCtrl',
+    resolve: {
+      last_searched_bondis: function(Bondis) {
+        return Bondis.last_search()
+      }
+    }
   })
   $stateProvider.state('detail', {
     url: '/detail/:bondiId',
     templateUrl: 'views/bondis-detail/bondis-detail.html',
-    params: { bondi: null }
+    controller: 'BondisDetailCtrl',
+    resolve: {
+      bondi: function(Bondis, $stateParams) {
+        return Bondis.details($stateParams.bondiId).then(function(bondi){
+          return bondi
+        })
+      }
+    }
   })
   $stateProvider.state('info', {
     url: '/info',
@@ -31,6 +44,12 @@ app.run(function($ionicPlatform) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    // if (navigator.splashscreen) {
+    //  navigator.splashscreen.hide();
+    // }
+    setTimeout(function() {
+        navigator.splashscreen.hide();
+    }, 100);
   });
 });
 

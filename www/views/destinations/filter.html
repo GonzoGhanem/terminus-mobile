@@ -1,0 +1,10 @@
+<label class="item item-input">
+  <input type="text" placeholder="Filtrar por destino" ng-model="data.filter_destination">
+</label>
+<a class="item" style="height: 100px;">
+  <ul>
+    <li ng-repeat="destination in destinations |filter:{name: data.filter_destination}" ng-click="setDefaults('from','to')">
+      {{destination.name}}
+    </li>
+  </ul>
+</a>

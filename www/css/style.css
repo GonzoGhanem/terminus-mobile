@@ -1,1 +1,5 @@
 /* Empty. Add your own CSS if you like */
+
+.item .text-small p {
+  font-size: 10px;
+}

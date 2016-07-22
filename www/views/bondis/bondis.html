@@ -1,16 +1,37 @@
-<ion-pane ng-controller="BondisCtrl" class="bondis">
+<ion-pane class="bondis">
   <ion-header-bar class="bar-dark">
     <a class="button button-clear" nav-direction="back" href="#/info">Info</a>
-    <h1 class="title">Cuándo sale el bondi?</h1>
+    <h1 class="title">Explorar destinos</h1>
     <a class="button button-icon icon ion-gear-a" nav-direction="forward" href="#/settings"></a>
   </ion-header-bar>
   <ion-content>
     <ion-list>
+      <a class="item item-icon-right" ng-click="showHide('from')">
+        Sale desde: <strong>{{data.from_name}}</strong>
+        <i class="icon ion-chevron-down"></i>
+      </a>
+      <destinations-filter></destinations-filter>
+      <!-- <label class="item item-input">
+        <input type="text" placeholder="Filtrar por destino" ng-model="data.filter_destination">
+      </label>
+      <a class="item" style="height: 100px;">
+        <ul>
+          <li ng-repeat="destination in destinations |filter:{name: data.filter_destination}" ng-click="setDefaults('from','to')">
+            {{destination.name}}
+          </li>
+        </ul>
+      </a> -->
       <label class="item item-input item-select">
         <div class="input-label">
-          Sale desde
+          Sale desde: <strong>Venado Tuerto</strong>
         </div>
-        <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('from','to')" ng-model="data.from"></select>
+
+        <!-- <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('from','to')" ng-model="data.from"></select> -->
+        <ul>
+          <li ng-repeat="destination in destinations" ng-click="setDefaults('from','to')">
+            {{destination.name}}
+          </li>
+        </ul>
       </label>
       <label class="item item-input item-select">
         <div class="input-label">
@@ -27,8 +48,12 @@
         <i class="icon ion-refresh"></i>
       </a>
       <ion-toggle ng-model="data.upcoming" toggle-class="toggle-royal">Sólo próximas 3 salidas</ion-toggle>
+      <a class="item item-icon-right" ng-click="openModal()">
+        Tengo una sugerencia
+        <i class="icon ion-help"></i>
+      </a>
       <button class="button button-block button-royal no-margin" ng-click="searchBondis()">
-        Buscar bondis
+        Buscar salidas
       </button>
       <label class="item item-input">
         <input type="text" placeholder="Filtrar por empresa" ng-model="data.filter">
@@ -37,8 +62,8 @@
         ng-repeat="bondi in bondis | filter:data.filter" 
         class="item-text-wrap"
         ng-click="showDetail(bondi)">
-        <span class="item-note" ng-show="bondi.today">
-          Sale hoy
+        <span class="item-note">
+          click para ver recorrido
         </span>
         <h2>{{bondi.name}}</h2>
         <br>
@@ -46,7 +71,80 @@
         <p>Llega: <strong>{{bondi.arrival}}</strong></p>
         <br>
         <p>Viaja los días: <strong>{{bondi.days_to_show.join(", ")}}</strong></p>
+        <br>
+      </ion-item>
+      <ion-item ng-hide="bondis.length > 0">
+        <strong>No hay resultados para su búsqueda</strong>
       </ion-item>
     </ion-list>
   </ion-content>
 </ion-pane>
+
+<script id="contact-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-assertive">
+      <h1 class="title">Sugerencia</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <div class="card">
+          <div class="item item-text-wrap">
+            <p>Estimado usuario, AMAMOS las sugerencias. Esta aplicación esta pensada y desarrollada para vos, por eso tu feedback es muy valioso.</p>
+            <p>Si tenés algún tipo de sugerencia para mejorar esta app, por favor no dudes en enviarnos un comentario usando la caja de texto que esta abajo:</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="item item-text-wrap">
+            <strong>Completar:</strong>
+          </div>
+          <label class="item item-input">
+            <textarea ng-model="request.destiny" placeholder="Me gustaría que .... " required rows="4"></textarea>
+          </label>
+          <label class="item item-input">
+            <input type="email" ng-model="request.email" placeholder="Email para notificación">
+          </label>
+        </div>
+        <button class="button button-block button-royal" ng-click="sendRequest()">
+          Enviar comentario
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="first-time-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-assertive">
+      <h1 class="title">Bienvenido</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <div class="card">
+          <div class="item item-text-wrap">
+            <p>
+              Por favor indique el destino (u origen) de su preferencia. Esta selección será recordada por la aplicación y podrá ser cambiada en cualquier momento. "Sólo próximas 3 salidas" buscará los proximos 3 colectivos con horario de salida posterior al de la consulta en caso de estar marcado, de lo contrario se buscarán todos los colectivos del día de hoy.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Sale desde
+            </div>
+            <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('from','to')" ng-model="data.from"></select>
+          </label>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Llega a
+            </div>
+            <select ng-options="destination.code as destination.name for destination in destinations" ng-change="setDefaults('to','from')" ng-model="data.to"></select>
+          </label>
+          <ion-toggle ng-model="data.upcoming" toggle-class="toggle-royal">Sólo próximas 3 salidas</ion-toggle>
+        </div>
+        <button class="button button-block button-royal" ng-click="saveFirstTime()">
+          Guardar y buscar colectivos
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-modal-view>
+</script>

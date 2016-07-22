@@ -1,18 +1,32 @@
-<ion-pane ng-controller="BondisDetailCtrl">
+<ion-pane>
   <ion-header-bar class="bar-dark">
-    <button class="button button-clear" ng-click="showBondis()">Bondis</button>
+    <a class="button button-clear" nav-direction="back" href="#/bondis">Volver</a>
     <h1 class="title">Detalle</h1>
   </ion-header-bar>
   <ion-content>
     <div class="list card">
-      <div class="item">
-        <h2>Empresa {{bondi.name}}</h2>
+      <div class="item item-royal">
+        <h2 style="color: #FFF;">Empresa {{bondi.name}}</h2>
       </div>
       <div class="item item-body">
         <p>Sale: <strong>{{bondi.departure}}</strong></p>
         <p>Llega: <strong>{{bondi.arrival}}</strong></p>
         <p>Viaja los días: <strong>{{bondi.days_to_show.join(", ")}}</strong></p>
       </div>
+    </div>
+    <div class="list card">
+      <div class="item item-royal">
+        <h2 style="color: #FFF;">Recorrido</h2>
+      </div>
+      <div class="item item-body" ng-repeat="stop in bondi.route_details">
+        <p>{{stop.city}} - {{stop.time}} - {{stop.observations}}</p>
+      </div>
+    </div>
+    <div class="text-center">
+      <a class="item assertive" nav-direction="back" href="#/bondis">
+        <i class="icon ion-android-bus"></i>
+        Volver a la lista
+      </a>
     </div>
   </ion-content>
 </ion-pane>
