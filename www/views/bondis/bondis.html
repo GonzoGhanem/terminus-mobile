@@ -6,16 +6,6 @@
   </ion-header-bar>
   <ion-content>
     <ion-list>
-      <!-- <a class="item item-icon-right" ng-click="showHideSearches('from', 'to')">
-        Sale desde: <strong>{{data.from_name}}</strong>
-        <i class="icon ion-chevron-down"></i>
-      </a>
-      <destinations-filter type="from" ng-show="data.show_from"></destinations-filter>
-      <a class="item item-icon-right" ng-click="showHideSearches('to', 'from')">
-        Llega a: <strong>{{data.to_name}}</strong>
-        <i class="icon ion-chevron-down"></i>
-      </a>
-      <destinations-filter type="to" ng-show="data.show_to"></destinations-filter> -->
       <select-bondi></select-bondi>
       <a class="item item-icon-right" ng-click="switchDestinations()">
         Invertir selección actual
@@ -25,7 +15,6 @@
         Restaurar (segun preferencias)
         <i class="icon ion-refresh"></i>
       </a>
-      <ion-toggle ng-model="data.upcoming" toggle-class="toggle-royal">Sólo próximas 3 salidas</ion-toggle>
       <a class="item item-icon-right" ng-click="openModal()">
         Tengo una sugerencia
         <i class="icon ion-help"></i>
